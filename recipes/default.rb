@@ -18,3 +18,4 @@
 # limitations under the License.
 #
 
+include_recipe 'xrdp'

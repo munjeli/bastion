@@ -8,4 +8,8 @@ license          'apache2'
 description      'Configures a node to be a bastion host'
 long_description 'Configures a node to be a bastion host'
 version          '0.0.1'
+
+supports         'ubuntu'
+
+depends          'xrdp', '~> 0.1'
 # rubocop:enable SingleSpaceBeforeFirstArg

@@ -3,11 +3,10 @@
 require_relative '../spec_helper'
 
 describe 'bastion::default' do
-  let(:platform) { { platform: 'ubuntu', version: '14.04' } }
-  let(:runner) { ChefSpec::SoloRunner.new(platform) }
+  let(:runner) { ChefSpec::SoloRunner.new }
   let(:chef_run) { runner.converge(described_recipe) }
 
-  it 'converges successfully' do
-    expect(chef_run).to be
+  it 'includes the xrdp recipe' do
+    expect(chef_run).to include_recipe('xrdp')
   end
 end
