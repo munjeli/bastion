@@ -6,7 +6,9 @@ describe 'bastion::default' do
   let(:runner) { ChefSpec::SoloRunner.new }
   let(:chef_run) { runner.converge(described_recipe) }
 
-  it 'includes the xrdp recipe' do
-    expect(chef_run).to include_recipe('xrdp')
+  %w(xrdp bastion::firewall).each do |r|
+    it "includes the '#{r}' recipe" do
+      expect(chef_run).to include_recipe(r)
+    end
   end
 end

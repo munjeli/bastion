@@ -8,6 +8,7 @@ require 'simplecov-console'
 require 'coveralls'
 require 'tmpdir'
 require 'fileutils'
+require_relative 'support/matchers/firewall'
 
 RSpec.configure do |c|
   c.color = true

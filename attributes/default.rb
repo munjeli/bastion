@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: bastion
-# Recipe:: default
+# Attributes:: default
 #
 # Copyright 2015 Socrata, Inc.
 #
@@ -18,5 +18,9 @@
 # limitations under the License.
 #
 
-include_recipe 'xrdp'
-include_recipe "#{cookbook_name}::firewall"
+default['bastion']['firewall']['enabled'] = true
+default['bastion']['firewall']['trusted_networks'] = %w(
+  10.0.0.0/8
+  172.16.0.0/12
+  192.168.0.0/16
+)

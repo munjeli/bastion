@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: bastion
-# Recipe:: default
+# Recipe:: firewall
 #
 # Copyright 2015 Socrata, Inc.
 #
@@ -18,5 +18,28 @@
 # limitations under the License.
 #
 
-include_recipe 'xrdp'
-include_recipe "#{cookbook_name}::firewall"
+if node['bastion']['firewall']['enabled']
+  firewall 'default' do
+    action :enable
+  end
+
+  Array(node['bastion']['firewall']['trusted_networks']).each do |network|
+    firewall_rule "#{network} - ssh" do
+      protocol :tcp
+      port 22
+      source network
+      action :allow
+    end
+
+    firewall_rule "#{network} - rdp" do
+      protocol :tcp
+      port 3389
+      source network
+      action :allow
+    end
+  end
+else
+  firewall 'default' do
+    action :disable
+  end
+end

@@ -10,65 +10,57 @@ Bastion Cookbook
 [codeclimate]: https://codeclimate.com/github/socrata-cookbooks/bastion-chef
 [coveralls]: https://coveralls.io/r/socrata-cookbooks/bastion-chef
 
-TODO: Enter the cookbook description here.
+A Chef cookbook for configuring a server to be used as a bastion host for
+remote access to and administration of an otherwise-walled-off network.
 
 Requirements
 ============
 
-TODO: Describe cookbook dependencies.
+This cookbook is written to hopefully work on, or be expandable to, other
+distros, but is currently only tested against Ubuntu Linux.
+
+Some of the dependencies are pinned to older versions in order to maintain
+compatibility--for now--with Chef 11.
 
 Usage
 =====
 
-TODO: Describe how to use the cookbook.
+Override any included attributes as needed and add `bastion` to your run_list.
 
 Recipes
 =======
 
 ***default***
 
-TODO: Describe each component recipe.
+Installs XRDP via the xrdp community cookbook and configures the firewall via
+the included firewall recipe (below).
+
+***firewall***
+
+If the firewall enabled attribute is set to true (the default), enables the
+system firewall and pokes holes in it for SSH (port 22) and RDP (port 3389)
+from an attribute-specified set of trusted networks.
+
+Otherwise, disables the system firewall.
 
 Attributes
 ==========
 
 ***default***
 
-TODO: Describe any noteworthy attributes.
+    default['bastion']['firewall']['enabled'] = true
 
-Resources
-=========
+Whether or not the system firewall should be enabled. This can be overridden to
+false if, for example, port access is instead being handled solely in your
+cloud provider's security configuration.
 
-***bastion***
+    default['bastion']['firewall']['trusted_networks'] = %w(
+      10.0.0.0/8
+      172.16.0.0/12
+      192.168.0.0/16
+    )
 
-TODO: Describe each included resource.
-
-Syntax:
-
-    bastion 'my_resource' do
-        attribute1 'value1'
-        action :create
-    end
-
-Actions:
-
-| Action  | Description  |
-|---------|--------------|
-| action1 | Do something |
-
-Attributes:
-
-| Attribute  | Default        | Description          |
-|------------|----------------|----------------------|
-| attribute1 | `'some_value'` | Do something         |
-| action     | `:create`      | Action(s) to perform |
-
-Providers
-=========
-
-TODO: Describe each included provider
-
-***Chef::Provider::SomeProvider***
+The set of CIDR ranges to allow access from in the system firewall.
 
 Contributing
 ============
