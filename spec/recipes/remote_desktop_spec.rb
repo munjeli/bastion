@@ -23,7 +23,7 @@ describe 'bastion::remote_desktop' do
     end
 
     it 'installs Firefox' do
-      expect(chef_run).to include_recipe('firefox')
+      expect(chef_run).to install_package('firefox')
     end
   end
 

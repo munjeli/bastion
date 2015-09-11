@@ -34,4 +34,4 @@ else
 end
 
 include_recipe 'chrome'
-include_recipe 'firefox'
+package 'firefox'
