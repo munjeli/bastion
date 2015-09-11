@@ -1,5 +1,9 @@
 language: ruby
 
+sudo: required
+services:
+  - docker
+  
 branches:
   only:
     - master
