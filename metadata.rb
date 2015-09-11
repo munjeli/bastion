@@ -11,5 +11,8 @@ version          '0.0.1'
 
 supports         'ubuntu'
 
+depends          'apt', '~> 2.0'
 depends          'firewall', '~> 1.1.0' # TODO: firewall 1.2+ requires Chef 12+
+depends          'chrome', '~> 1.0'
+depends          'firefox', '~> 2.0'
 # rubocop:enable SingleSpaceBeforeFirstArg

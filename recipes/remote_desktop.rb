@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: bastion
-# Recipe:: default
+# Recipe:: remote_desktop
 #
 # Copyright 2015 Socrata, Inc.
 #
@@ -18,5 +18,20 @@
 # limitations under the License.
 #
 
-include_recipe 'apt'
-include_recipe "#{cookbook_name}::firewall"
+%w(xorg fluxbox dbus-x11).each { |p| package p }
+
+case node['bastion']['remote_desktop']['method'].to_sym
+when :x11
+  node.set['sshd']['sshd_config']['X11Forwarding'] = 'yes'
+  node.set['sshd']['sshd_config']['X11UseLocalhost'] = 'yes'
+  include_recipe 'sshd'
+when :rdp
+  include_recipe 'xrdp'
+else
+  fail(Chef::Exceptions::ValidationFailed,
+       "`node['bastion']['remote_desktop']['method']` must be one of " \
+       '`:rdp or `:x11`')
+end
+
+include_recipe 'chrome'
+include_recipe 'firefox'
