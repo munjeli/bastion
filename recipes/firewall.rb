@@ -30,13 +30,6 @@ if node['bastion']['firewall']['enabled']
       source network
       action :allow
     end
-
-    firewall_rule "#{network} - rdp" do
-      protocol :tcp
-      port 3389
-      source network
-      action :allow
-    end
   end
 else
   firewall 'default' do

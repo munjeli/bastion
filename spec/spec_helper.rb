@@ -1,29 +1,28 @@
 # Encoding: UTF-8
 
-require 'chef'
 require 'chefspec'
-require 'tempfile'
+require 'chefspec/berkshelf'
 require 'simplecov'
 require 'simplecov-console'
 require 'coveralls'
-require 'tmpdir'
-require 'fileutils'
-require_relative 'support/matchers/firewall'
 
 RSpec.configure do |c|
   c.color = true
 
-  c.before(:suite) do
-    COOKBOOK_PATH = Dir.mktmpdir('chefspec')
-    metadata = Chef::Cookbook::Metadata.new
-    metadata.from_file(File.expand_path('../../metadata.rb', __FILE__))
-    link_path = File.join(COOKBOOK_PATH, metadata.name)
-    FileUtils.ln_s(File.expand_path('../..', __FILE__), link_path)
-    c.cookbook_path = [COOKBOOK_PATH,
-                       File.expand_path('../support/cookbooks', __FILE__)]
+  c.before(:each) do
+    # Test each recipe in isolation, regardless of includes
+    @included_recipes = []
+    allow_any_instance_of(Chef::RunContext).to receive(:loaded_recipe?)
+      .and_return(false)
+    allow_any_instance_of(Chef::Recipe).to receive(:include_recipe) do |_, i|
+      allow_any_instance_of(Chef::RunContext).to receive(:loaded_recipe?)
+        .with(i)
+        .and_return(true)
+      @included_recipes << i
+    end
+    allow_any_instance_of(Chef::RunContext).to receive(:loaded_recipes)
+      .and_return(@included_recipes)
   end
-
-  c.after(:suite) { FileUtils.rm_r(COOKBOOK_PATH) }
 end
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[

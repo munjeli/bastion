@@ -20,3 +20,4 @@
 
 include_recipe 'apt'
 include_recipe "#{cookbook_name}::firewall"
+include_recipe "#{cookbook_name}::remote_desktop"

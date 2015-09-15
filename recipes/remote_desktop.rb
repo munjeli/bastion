@@ -18,20 +18,13 @@
 # limitations under the License.
 #
 
-%w(xorg fluxbox dbus-x11).each { |p| package p }
+include_recipe 'x2go-server'
 
-case node['bastion']['remote_desktop']['method'].to_sym
-when :x11
-  node.set['sshd']['sshd_config']['X11Forwarding'] = 'yes'
-  node.set['sshd']['sshd_config']['X11UseLocalhost'] = 'yes'
-  include_recipe 'sshd'
-when :rdp
-  include_recipe 'xrdp'
-else
-  fail(Chef::Exceptions::ValidationFailed,
-       "`node['bastion']['remote_desktop']['method']` must be one of " \
-       '`:rdp or `:x11`')
+apt_repository 'google-chrome' do
+  uri 'http://dl.google.com/linux/chrome/deb'
+  distribution 'stable'
+  components %w(main)
+  key 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
 end
 
-include_recipe 'chrome'
-package 'firefox'
+%w(xorg fluxbox dbus-x11 google-chrome-stable firefox).each { |p| package p }
