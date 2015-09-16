@@ -1,14 +1,14 @@
 Bastion Cookbook
 ================
 [![Cookbook Version](https://img.shields.io/cookbook/v/bastion.svg)][cookbook]
-[![Build Status](https://img.shields.io/travis/socrata-cookbooks/bastion-chef.svg)][travis]
-[![Code Climate](https://img.shields.io/codeclimate/github/socrata-cookbooks/bastion-chef.svg)][codeclimate]
-[![Coverage Status](https://img.shields.io/coveralls/socrata-cookbooks/bastion-chef.svg)][coveralls]
+[![Build Status](https://img.shields.io/travis/socrata-cookbooks/chef-bastion.svg)][travis]
+[![Code Climate](https://img.shields.io/codeclimate/github/socrata-cookbooks/chef-bastion.svg)][codeclimate]
+[![Coverage Status](https://img.shields.io/coveralls/socrata-cookbooks/chef-bastion.svg)][coveralls]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/bastion
-[travis]: https://travis-ci.org/socrata-cookbooks/bastion-chef
-[codeclimate]: https://codeclimate.com/github/socrata-cookbooks/bastion-chef
-[coveralls]: https://coveralls.io/r/socrata-cookbooks/bastion-chef
+[travis]: https://travis-ci.org/socrata-cookbooks/chef-bastion
+[codeclimate]: https://codeclimate.com/github/socrata-cookbooks/chef-bastion
+[coveralls]: https://coveralls.io/r/socrata-cookbooks/chef-bastion
 
 A Chef cookbook for configuring a server to be used as a bastion host for
 remote access to and administration of an otherwise walled-off network.
