@@ -11,7 +11,7 @@ Bastion Cookbook
 [coveralls]: https://coveralls.io/r/socrata-cookbooks/bastion-chef
 
 A Chef cookbook for configuring a server to be used as a bastion host for
-remote access to and administration of an otherwise-walled-off network.
+remote access to and administration of an otherwise walled-off network.
 
 Requirements
 ============
@@ -32,16 +32,19 @@ Recipes
 
 ***default***
 
-Installs XRDP via the xrdp community cookbook and configures the firewall via
-the included firewall recipe (below).
+Refreshes the APT cache and configures the firewall and remote desktop (below).
 
 ***firewall***
 
 If the firewall enabled attribute is set to true (the default), enables the
-system firewall and pokes holes in it for SSH (port 22) and RDP (port 3389)
-from an attribute-specified set of trusted networks.
+system firewall and pokes holes in it for SSH (port 22) from an
+attribute-specified set of trusted networks.
 
-Otherwise, disables the system firewall.
+If the firewall is not set to enabled, it disables it.
+
+***remote_desktop***
+
+Installs X2go, Google Chrome, and Firefox.
 
 Attributes
 ==========

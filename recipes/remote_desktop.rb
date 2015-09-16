@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: bastion
-# Recipe:: firewall
+# Recipe:: remote_desktop
 #
 # Copyright 2015 Socrata, Inc.
 #
@@ -18,21 +18,13 @@
 # limitations under the License.
 #
 
-if node['bastion']['firewall']['enabled']
-  firewall 'default' do
-    action :enable
-  end
+include_recipe 'x2go-server'
 
-  Array(node['bastion']['firewall']['trusted_networks']).each do |network|
-    firewall_rule "#{network} - ssh" do
-      protocol :tcp
-      port 22
-      source network
-      action :allow
-    end
-  end
-else
-  firewall 'default' do
-    action :disable
-  end
+apt_repository 'google-chrome' do
+  uri 'http://dl.google.com/linux/chrome/deb'
+  distribution 'stable'
+  components %w(main)
+  key 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
 end
+
+%w(xorg fluxbox dbus-x11 google-chrome-stable firefox).each { |p| package p }

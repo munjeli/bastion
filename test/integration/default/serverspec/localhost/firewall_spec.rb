@@ -10,12 +10,5 @@ describe 'bastion::firewall' do
         expect(subject).to have_rule(expected)
       end
     end
-
-    it 'accepts RDP from private networks' do
-      %w(10.0.0.0/8 172.16.0.0/12 192.168.0.0/16).each do |n|
-        expected = "-A.* -s #{n} -p tcp -m tcp --dport 3389 -j ACCEPT"
-        expect(subject).to have_rule(expected)
-      end
-    end
   end
 end

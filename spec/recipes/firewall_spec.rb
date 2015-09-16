@@ -22,13 +22,6 @@ describe 'bastion::firewall' do
           .with(protocol: :tcp, port: 22, source: n)
       end
     end
-
-    it 'opens RDP access to the trusted networks' do
-      %w(10.0.0.0/8 172.16.0.0/12 192.168.0.0/16).each do |n|
-        expect(chef_run).to allow_firewall_rule("#{n} - rdp")
-          .with(protocol: :tcp, port: 3389, source: n)
-      end
-    end
   end
 
   context 'the firewall disabled' do
