@@ -1,7 +1,7 @@
 Bastion Cookbook CHANGELOG
 ==========================
 
-v?.?.? (????-??-??)
+v0.2.0 (2015-09-25)
 -------------------
 - Install auditd and log all of the things
 
