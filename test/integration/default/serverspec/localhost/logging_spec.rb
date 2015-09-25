@@ -14,8 +14,10 @@ describe 'bastion::logging' do
       expect(subject).to be_enabled
     end
 
-    it 'is running' do
-      expect(subject).to be_running
+    unless `ps h -p 1 -o command`.start_with?('/usr/sbin/sshd')
+      it 'is running' do
+        expect(subject).to be_running
+      end
     end
   end
 
