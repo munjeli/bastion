@@ -46,6 +46,11 @@ If the firewall is not set to enabled, it disables it.
 
 Installs X2go, Google Chrome, and Firefox.
 
+***logging***
+
+Installs + enables + starts Auditd, using rules based on the base STIG
+ruleset.
+
 Attributes
 ==========
 
