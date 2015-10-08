@@ -1,6 +1,10 @@
 Bastion Cookbook CHANGELOG
 ==========================
 
+v?.?.? (????-??-??)
+-------------------
+- Install a limited set of dev tools--Git and Ruby
+
 v0.2.0 (2015-09-25)
 -------------------
 - Install auditd and log all of the things

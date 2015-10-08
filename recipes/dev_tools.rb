@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: bastion
-# Recipe:: default
+# Recipe:: dev_tools
 #
 # Copyright 2015 Socrata, Inc.
 #
@@ -18,8 +18,8 @@
 # limitations under the License.
 #
 
-include_recipe 'apt'
-include_recipe "#{cookbook_name}::dev_tools"
-include_recipe "#{cookbook_name}::firewall"
-include_recipe "#{cookbook_name}::remote_desktop"
-include_recipe "#{cookbook_name}::logging"
+package 'git'
+package 'ruby-dev'
+
+gem_package 'bundler'
+gem_package 'rake'
