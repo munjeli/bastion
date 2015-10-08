@@ -1,7 +1,7 @@
 Bastion Cookbook CHANGELOG
 ==========================
 
-v?.?.? (????-??-??)
+v0.3.0 (2015-10-08)
 -------------------
 - Install a limited set of dev tools--Git and Ruby
 

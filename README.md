@@ -34,6 +34,10 @@ Recipes
 
 Refreshes the APT cache and configures the firewall and remote desktop (below).
 
+***dev_tools***
+
+Installs certain base dev tools--currently Git and Ruby.
+
 ***firewall***
 
 If the firewall enabled attribute is set to true (the default), enables the
