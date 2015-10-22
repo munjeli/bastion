@@ -3,6 +3,7 @@ Bastion Cookbook CHANGELOG
 
 v?.?.? (????-??-??)
 -------------------
+- Replace Auditd with Snoopy for logging execve calls
 
 v0.3.0 (2015-10-08)
 -------------------

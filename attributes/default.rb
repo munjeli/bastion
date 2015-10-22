@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+default['snoopy']['config']['filter_chain'] = 'only_tty:'
+
 default['bastion']['firewall']['enabled'] = true
 default['bastion']['firewall']['trusted_networks'] = %w(
   10.0.0.0/8

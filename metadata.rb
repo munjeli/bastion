@@ -14,4 +14,5 @@ supports         'ubuntu'
 depends          'apt', '~> 2.0'
 depends          'firewall', '~> 1.1.0' # TODO: firewall 1.2+ requires Chef 12+
 depends          'x2go-server', '~> 0.1'
+depends          'snoopy', '~> 1.0'
 # rubocop:enable SingleSpaceBeforeFirstArg
