@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+include_recipe 'java'
+
 package 'git'
 package 'ruby-dev'
 

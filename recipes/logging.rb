@@ -18,10 +18,10 @@
 # limitations under the License.
 #
 
+include_recipe 'snoopy'
+
 # TODO: Ideally, this would be handled by a new or updated auditd cookbook,
-# but the current one writes one single template rather than separate .d files,
-# doesn't offer an easy way to combine the base STIG rules with our execve
-# rules.
+# but the current one writes one single template rather than separate .d files
 package 'auditd'
 
 file '/etc/audit/rules.d/audit.rules' do
@@ -33,15 +33,6 @@ file '/etc/audit/rules.d/audit.rules' do
       '| sed "s/\\/etc\\/sysconfig\\/network/\\/etc\\/network/g"'
     ).stdout
   }
-  notifies :run, 'execute[augenrules]'
-end
-
-file '/etc/audit/rules.d/execve.rules' do
-  content <<-EOH.gsub(/^ +/, '')
-    # Log all commands executed by any user
-    -a exit,always -F arch=b64 -S execve
-    -a exit,always -F arch=b32 -S execve
-  EOH
   notifies :run, 'execute[augenrules]'
 end
 

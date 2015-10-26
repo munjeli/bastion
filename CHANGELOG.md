@@ -3,6 +3,8 @@ Bastion Cookbook CHANGELOG
 
 v?.?.? (????-??-??)
 -------------------
+- Replace Auditd with Snoopy for logging execve calls
+- Install Oracle Java with the other dev tools
 
 v0.3.0 (2015-10-08)
 -------------------

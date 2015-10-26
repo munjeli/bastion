@@ -3,6 +3,12 @@
 require_relative '../spec_helper'
 
 describe 'bastion::dev_tools' do
+  describe file('/usr/lib/jvm/java-8-oracle-amd64/bin/java') do
+    it 'exists' do
+      expect(subject).to be_file
+    end
+  end
+
   describe package('git') do
     it 'is installed' do
       expect(subject).to be_installed
