@@ -7,7 +7,7 @@ maintainer_email 'jonathan.hartman@socrata.com'
 license          'apache2'
 description      'Configures a node to be a bastion host'
 long_description 'Configures a node to be a bastion host'
-version          '1.0.0'
+version          '1.0.1'
 
 supports         'ubuntu'
 
